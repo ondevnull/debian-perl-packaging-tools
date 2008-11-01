@@ -1,8 +1,8 @@
 #!/bin/sh
 #
 # Author: Jose Luis Rivas <ghostbar at gmx.com>
-# Filename: install.sh
-# Date: October 31, 2008, 22:39.
+# Filename: pp-orig
+# Date: November 01, 2008, 01:28.
 #
 
 #
@@ -28,56 +28,22 @@
 #
 
 help="
-Installer for perl-packaging-tools. Installs a copy
-of the binaries in ~/bin
+Downloader of new or actual origs, just run it without
+arguments.
 
 Options:
--v\--version		Print version.
--h\--help		Print this help.
--i			Installs the binaries.
--u			Removes the binaries.
+-v		Print version.
+-h		Print this help.
 
 Last version downloadable from:
 git://git.rivco.info/misc/perl-packaging-tools.git
 "
 
 version="
-Installer for perl-packaging-tools
+Downloader of new or actual origs
 Version: 0.01
 Copyright 2008 Jose Luis Rivas <ghostbar at gmx.com>
 "
-
-binlists="pp-build
-pp-new
-pp-upgrade
-pp-orig"
-
-installer() {
-	echo "Checking if ~/bin is created"
-	if [ ! -e $HOME/bin ]; then
-		mkdir ~/bin
-		echo "Created ~/bin..."
-	else
-		echo "~/bin exists! :D"
-	fi
-	echo "Starting to copy the files"
-	for i in $binlists
-	do
-		echo "Copying $i..."
-		cp ./$i ~/bin/$i
-	done
-	echo "Dude! You're done!"
-}
-
-uninstaller() {
-	for i in $binlists
-	do
-		echo "Deleting $i..."
-		rm ~/bin/$i
-	done
-	echo "Uninstalled!"
-}
-
 
 while test -n "$1"; do
 	case $1 in
@@ -85,16 +51,14 @@ while test -n "$1"; do
 		echo "$version"; exit 0;;
 	-h|--help)	
 		echo "$help"; exit 0;;
-	-i)
-		installer; exit 0;;
-	-u)
-		uninstaller; exit 0;;
 	*)
 		echo "$help"; exit 0;;
-		
 	esac
 done
 
 if test -z $1; then
-	echo "$help"; exit 0
+	[ ! -e ../tarballs ] && mkdir ../tarballs
+	uscan --force-download --destdir ../tarballs --rename
 fi
+
+exit 0

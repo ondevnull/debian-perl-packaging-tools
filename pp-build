@@ -26,15 +26,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
-checkbadir() {
-	if test ! -e ../b-a; then
-		mkdir ../b-a
-	fi
-}
+
 callbuilder() {
-	checkbadir
-	BUILDER="pdebuild --pbuilder cowbuilder --buildresult ../b-a --debsign-k CACAB118 --auto-debsign -- --basepath ${BSPATH}"
-	svn-buildpackage $BUILDER --svn-ignore-new --svn-lintian
+	BUILDER="pdebuild --pbuilder cowbuilder --debsign-k CACAB118 --auto-debsign -- --basepath ${BSPATH}"
+	svn-buildpackage --svn-ignore-new --svn-lintian --svn-builder=$BUILDER
 }
 
 help="

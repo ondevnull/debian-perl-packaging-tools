@@ -54,7 +54,11 @@ while test -n "$1"; do
 	-h|--help)
 		echo "$help"; exit 0;;
 	*)
-		svn co svn+ssh://svn.debian.org/svn/pkg-perl/trunk/$1/ svn
+		echo "Creating directory $1"
+		mkdir $1
+		echo "Downloading branch of $1 to $1/svn"
+		svn co svn+ssh://svn.debian.org/svn/pkg-perl/trunk/$1/ $1/svn
+		echo "Done downloading branch of $1"
 		exit 0;;
 	esac
 done
