@@ -1,0 +1,72 @@
+#!/bin/sh
+#
+# Author: Jose Luis Rivas <ghostbar at gmx.com>
+# Filename: pp-build
+# Date: October 31, 2008, 20:58.
+#
+
+#
+# Copyright (c) 2008 Jose Luis Rivas <ghostbar at gmx.com>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+checkbadir() {
+	if test ! -e ../b-a; then
+		mkdir ../b-a
+	fi
+}
+callbuilder() {
+	checkbadir
+	BUILDER="pdebuild --pbuilder cowbuilder --buildresult ../b-a --debsign-k CACAB118 --auto-debsign -- --basepath ${BSPATH}"
+	svn-buildpackage $BUILDER --svn-ignore-new --svn-lintian
+}
+
+help="
+Builder wrapper for debian-perl with svn-buildpackage 
+just run it without arguments.
+
+Options:
+-v		Print version.
+-h		Print this help.
+
+
+Last version downloadable from:
+git://git.rivco.info/misc/perl-packaging-tools.git
+"
+
+version="
+Builder wrapper for debian-perl with svn-buildpackage
+Version: 0.01
+Copyright 2008 Jose Luis Rivas <ghostbar at gmx.com>
+"
+
+while test -n "$1"; do
+	case $1 in
+	-v|--version)	
+		echo "$version"; exit 0;;
+	-h|--help)	
+		echo "$help"; exit 0;;
+	*)
+		echo "$help"; exit 0;;
+	esac
+done
+
+if test -z $1; then
+	callbuilder; exit 0
+fi

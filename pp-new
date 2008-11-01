@@ -1,0 +1,64 @@
+#!/bin/sh
+#
+# Author: Jose Luis Rivas <ghostbar at gmx.com>
+# Filename: pp-new
+# Date: October 31, 2008, 20:29.
+#
+
+#
+# Copyright (c) 2008 Jose Luis Rivas <ghostbar at gmx.com>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+
+help="
+This is a downloader for perl packages in
+debian-perl group SVN repo. Creates automatically
+the ./svn directory from the package given as arg.
+
+Options:
+-v		Print version.
+-h		Print this help.
+nameofpackage	Downloads the package to ./svn
+
+Last version downloadable from:
+git://git.rivco.info/misc/perl-packaging-tools.git
+"
+
+version="
+Downloader for debian-perl packages
+Version: 0.01
+Copyright 2008 Jose Luis Rivas <ghostbar at gmx.com>
+"
+
+while test -n "$1"; do
+	case $1 in
+	-v|--version)
+		echo "$version"; exit 0;;
+	-h|--help)
+		echo "$help"; exit 0;;
+	*)
+		svn co svn+ssh://svn.debian.org/svn/pkg-perl/trunk/$1/ svn
+		exit 0;;
+	esac
+done
+
+if test -z $1; then
+	echo "$help"; exit 0
+fi
