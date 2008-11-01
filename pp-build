@@ -28,7 +28,7 @@
 #
 
 callbuilder() {
-	BUILDER="pdebuild --pbuilder cowbuilder --debsign-k CACAB118 --auto-debsign -- --basepath ${BSPATH}"
+	BUILDER="pdebuild --pbuilder cowbuilder -- --basepath ${BSPATH}"
 	svn-buildpackage --svn-ignore-new --svn-lintian --svn-builder=$BUILDER
 }
 
