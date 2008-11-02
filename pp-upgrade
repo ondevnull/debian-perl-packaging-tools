@@ -64,6 +64,6 @@ if test -z $1; then
 	echo "Downloading new upstream"
 	uscan --no-symlink --destdir ../tarballs/
 	echo "Sending upgrade to SVN repo"
-	svn-upgrade ../tarballs/*.tar.gz
+	svn-upgrade ../tarballs/*
 	exit 0
 fi
