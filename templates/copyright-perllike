@@ -1,0 +1,24 @@
+Format-Specification: 
+    http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=196
+Upstream-Author: Florian Ragwitz <rafl@debian.org>
+Packaged-By: Jose Luis Rivas <ghostbar38@gmail.com>
+Upstream-Name: B-Hooks-EndOfScope
+Original-Source-Location: http://search.cpan.org/dist/B-Hooks-EndOfScope/
+Original-Source-Command: uscan --force-download
+Original-Source-Depends: devscripts
+
+Files: *
+Copyright © 2008 by Florian Ragwitz
+License: GPL-1+ | Artistic
+ This program is free software; you can redistribute
+ it and/or modify it under the same terms as Perl itself.
+
+Files: debian/*
+Copyright: © 2008 Jose Luis Rivas <ghostbar38@gmail.com>
+License: GPL-1+ | Artistic
+
+Perl is distributed under your choice of the GNU General Public License or
+the Artistic License.  On Debian GNU/Linux systems, the complete text of the
+GNU General Public License can be found in `/usr/share/common-licenses/GPL'
+and the Artistic Licence in `/usr/share/common-licenses/Artistic'.
+

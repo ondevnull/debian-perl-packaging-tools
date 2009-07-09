@@ -1,12 +1,12 @@
 #!/bin/sh
 #
-# Author: Jose Luis Rivas <ghostbar at gmx.com>
+# Author: Jose Luis Rivas <joseluis at rivco.net>
 # Filename: install.sh
 # Date: October 31, 2008, 22:39.
 #
 
 #
-# Copyright (c) 2008 Jose Luis Rivas <ghostbar at gmx.com>
+# Copyright (c) 2008 Jose Luis Rivas <joseluis at rivco.net>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -38,13 +38,13 @@ Options:
 -u			Removes the binaries.
 
 Last version downloadable from:
-git://git.rivco.info/misc/perl-packaging-tools.git
+http://scm.rivco.net/p/perl-packaging-tools/
 "
 
 version="
 Installer for perl-packaging-tools
 Version: 0.01
-Copyright 2008 Jose Luis Rivas <ghostbar at gmx.com>
+Copyright 2008 Jose Luis Rivas <joseluis at rivco.net>
 "
 
 binlists="pp-build

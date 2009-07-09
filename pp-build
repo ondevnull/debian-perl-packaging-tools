@@ -1,12 +1,12 @@
 #!/bin/sh
 #
-# Author: Jose Luis Rivas <ghostbar at gmx.com>
+# Author: Jose Luis Rivas <joseluis at rivco.net>
 # Filename: pp-build
 # Date: October 31, 2008, 20:58.
 #
 
 #
-# Copyright (c) 2008 Jose Luis Rivas <ghostbar at gmx.com>
+# Copyright (c) 2008, 2009 Jose Luis Rivas <joseluis at rivco.net>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
 
 callbuilder() {
 	BUILDER="pdebuild --pbuilder cowbuilder -- --basepath ${BSPATH}"
-	svn-buildpackage --svn-ignore-new --svn-lintian --svn-builder=$BUILDER
+	svn-buildpackage --svn-ignore-new --svn-lintian --svn-arch=source --svn-builder=$BUILDER
 }
 
 help="
@@ -42,13 +42,13 @@ Options:
 
 
 Last version downloadable from:
-git://git.rivco.info/misc/perl-packaging-tools.git
+http://scm.rivco.net/p/perl-packaging-tools/
 "
 
 version="
 Builder wrapper for debian-perl with svn-buildpackage
 Version: 0.01
-Copyright 2008 Jose Luis Rivas <ghostbar at gmx.com>
+Copyright 2008 Jose Luis Rivas <joseluis at rivco.net>
 "
 
 while test -n "$1"; do
