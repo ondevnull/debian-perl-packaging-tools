@@ -28,7 +28,7 @@
 #
 
 callbuilder() {
-	BUILDER="pdebuild --pbuilder cowbuilder --buildresult ../ -- --basepath ${BSPATH}"
+	BUILDER="pdebuild --buildresult ../ --pbuilder cowbuilder -- --basepath ${BSPATH}"
 	svn-buildpackage --svn-ignore-new --svn-lintian --svn-arch=source --svn-builder=$BUILDER
 }
 
