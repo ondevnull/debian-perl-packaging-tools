@@ -1,12 +1,12 @@
 #!/bin/sh
 #
 # Author: Jose Luis Rivas <joseluis at rivco.net>
-# Filename: install.sh
-# Date: October 31, 2008, 22:39.
+# Filename: pp-clean
+# Date: October 3, 2009, 16:01.
 #
 
 #
-# Copyright (c) 2008 Jose Luis Rivas <joseluis at rivco.net>
+# Copyright (c) 2009 Jose Luis Rivas <joseluis at rivco.net>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,74 +28,37 @@
 #
 
 help="
-Installer for perl-packaging-tools. Installs a copy
-of the binaries in ~/bin
+This is a dumb script for cleaning up build dir from my conf of pkg-perl.
+Run it without args and cleans ~/dev/debian/perl/builds/.
 
 Options:
--v\--version		Print version.
--h\--help		Print this help.
--i			Installs the binaries.
--u			Removes the binaries.
+-v		Print version.
+-h		Print this help.
 
 Last version downloadable from:
 http://scm.rivco.net/p/perl-packaging-tools/
 "
 
 version="
-Installer for perl-packaging-tools
+Downloader for debian-perl packages
 Version: 0.01
-Copyright 2008 Jose Luis Rivas <joseluis at rivco.net>
+Copyright 2009 Jose Luis Rivas <joseluis at rivco.net>
 "
-
-binlists="pp-build
-pp-new
-pp-upgrade
-pp-orig
-pp-clean"
-
-installer() {
-	echo "Checking if ~/bin is created"
-	if [ ! -e $HOME/bin ]; then
-		mkdir ~/bin
-		echo "Created ~/bin..."
-	else
-		echo "~/bin exists! :D"
-	fi
-	echo "Starting to copy the files"
-	for i in $binlists
-	do
-		echo "Copying $i..."
-		cp ./$i ~/bin/$i
-	done
-	echo "Dude! You're done!"
-}
-
-uninstaller() {
-	for i in $binlists
-	do
-		echo "Deleting $i..."
-		rm ~/bin/$i
-	done
-	echo "Uninstalled!"
-}
-
 
 while test -n "$1"; do
 	case $1 in
-	-v|--version)	
+	-v|--version)
 		echo "$version"; exit 0;;
-	-h|--help)	
+	-h|--help)
 		echo "$help"; exit 0;;
-	-i)
-		installer; exit 0;;
-	-u)
-		uninstaller; exit 0;;
 	*)
 		echo "$help"; exit 0;;
-		
 	esac
 done
 
 if test -z $1; then
-	echo "$help"; exit 0
+	echo "Cleaning build dir"
+	rm ~/dev/debian/perl/builds/*
+	echo "Clean :-)"
+	exit 0
 fi

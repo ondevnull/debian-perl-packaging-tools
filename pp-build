@@ -28,7 +28,7 @@
 #
 
 callbuilder() {
-	BUILDER="pdebuild --pbuilder cowbuilder -- --basepath ${BSPATH}"
+	BUILDER="pdebuild --pbuilder cowbuilder --buildresult /home/ghostbar/dev/debian/perl/builds -- --basepath ${BSPATH}"
 	svn-buildpackage --svn-ignore-new --svn-lintian --svn-arch=source --svn-builder=$BUILDER
 }
 
